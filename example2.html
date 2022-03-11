@@ -1,0 +1,36 @@
+<html>
+<head>
+  <title>Styled Components</title>
+  <script type="module">
+    import styled from './styled/styled-components'
+
+    const padding = '3em'
+    const Section = styled.section`
+      color: white;
+      padding: ${padding};
+      background: ${props => props.background || 'rgb(60, 60, 60)'};
+      height: max-content;
+      transition: background 0.5s ease;
+      
+      &:hover {
+        background: black;
+      }
+    `
+
+    console.log(styled.div``)
+    console.log(styled.div.attr)
+
+    const App = () => (
+      <div>
+        <Section background="cornflowerblue">✨ Magic</Section>
+        <Section>✨ Magic</Section>
+        <Section background="cornflowerblue">✨ Magicrfgergergerg</Section>
+      </div>
+    )
+
+    document.body.append(<App />)
+  </script>
+</head>
+<body>
+</body>
+</html>

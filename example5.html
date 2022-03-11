@@ -1,0 +1,100 @@
+<html>
+<head>
+  <title>Styled Components</title>
+  <script type="module">
+    import styled, { createGlobalStyle } from './styled/styled-components'
+
+    const GlobalStyle = createGlobalStyle`
+      body {
+        font-size: 30px;
+      }
+    `
+
+    const Button = styled.button`
+      background: ${props => props.primary ? 'palevioletred' : 'white'};
+      color: ${props => props.primary ? 'white' : 'palevioletred'};
+      font-size: 1em;
+      padding: 0.25em 1em;
+      border: 2px solid palevioletred;
+      border-radius: 3px;
+      margin-right: 10px;
+    `
+
+    const Title = styled.h1`
+      font-size: 1.5em;
+      color: palevioletred;
+    `
+
+    const Label = styled.label`
+      font-size: 1em;
+      color: palevioletred;
+      width: 150px;
+      display: inline-block;`
+
+    const Input = styled.input`
+      padding: 0.5em;
+      margin: 0.5em;
+      color: palevioletred;
+      background: papayawhip;
+      border: none;
+      border-radius: 3px;
+      width: *;
+    `
+
+    const FormWrapper = styled.form`
+      flow:vertical;
+
+      & > div {
+        margin: *;
+        width: 60vw;
+      }
+    `
+
+    class Form extends Element {
+      email = ''
+      updateEmail = e => {
+        this.componentUpdate({ email: e.target.value })
+      }
+
+      render() {
+        return (
+          <FormWrapper>
+            <div>
+              <Title>{
+                this.email.length === 0
+                  ? 'Form :)'
+                  : `Hello ${this.email}`
+              }</Title>
+              <Label for="name">Email:</Label>
+              <Input id="name" type="text" onInput={this.updateEmail}/>
+            </div>
+
+            <div>
+              <Label for="email">Passowrd:</Label>
+              <Input id="email" type="password" />
+            </div>
+            
+            <br />
+            <div>
+              <Button onClick={() => Window.this.modal(<alert>Cancel</alert>)}>
+                Cancel
+              </Button>
+
+              <Button onClick={() => Window.this.modal(<alert>{this.email}</alert>)} primary={true}>
+                Submit
+              </Button>
+            </div>
+          </FormWrapper>
+        )
+      }
+    }
+
+    document.body.append(<div>
+      <GlobalStyle />
+      <Form />
+    </div>)
+  </script>
+</head>
+<body>
+</body>
+</html>

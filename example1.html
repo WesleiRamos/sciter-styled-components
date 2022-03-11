@@ -1,0 +1,73 @@
+<html>
+<head>
+  <title>Styled Components</title>
+  <script type="module">
+    import styled, { createGlobalStyle } from './styled/styled-components'
+
+    const GlobalStyle = createGlobalStyle`
+      body {
+        margin: 0;
+        background-color: rgb(60, 60, 60);
+      }
+    `
+
+    const TextArea = styled.textarea`
+      display: block;
+      margin-top: 20px;
+      width: 100%;
+      height: calc(100% - 120px);
+      padding: 0.5em;
+      margin: 0.5em;
+      color: rgb(245, 184, 61);
+      background: rgb(20, 20, 20);
+      border: none;
+      border-radius: 5px;
+      font-size: 20px;
+      font-family: monospace;
+    `;
+
+    class App extends Element {
+
+      style = `
+/**
+ * Edit me
+ */
+display: inline-block;
+border-radius: 1px;
+padding: 0.5rem 0;
+margin: 0.5rem 1rem;
+width: 11rem;
+background: white;
+color: black;
+border: 5px solid white;`
+
+      updateStyle = e => {
+        this.componentUpdate({
+          style: e.target.value
+        })
+      }
+
+      render() {
+        /**
+         * Dont create a styled component inside another component
+         */
+        const Button = styled.button`${this.style}`;
+
+        return (
+          <div>
+            <Button>Ho ho ho ho</Button>
+            <TextArea spellcheck="no" onInput={this.updateStyle}>{this.style.trim()}</TextArea>
+          </div>
+        )
+      }
+    }
+
+    document.body.append(<div>
+      <GlobalStyle />
+      <App />
+    </div>)
+  </script>
+</head>
+<body>
+</body>
+</html>
