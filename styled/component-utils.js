@@ -2,8 +2,7 @@ export const isComponent = component => {
   if (typeof component !== 'object')
     return false
 
-  return Reactor.isNode(component) ||
-    (component.hasOwnProperty('type') &&	component.hasOwnProperty('props'))
+  return Reactor.isNode(component) || (component.hasOwnProperty('type') && component.hasOwnProperty('props'))
 }
 
 /**
